@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import { useWindowStore } from './window-store'
 import { useThemeStore } from './theme-store'
 import { TitlebarMenu } from './titlebar-menu'
-import appIcon from '@/resources/build/icon.svg'
+import { PiTerminalWindowFill } from 'react-icons/pi'
 
 /**
  * Custom window titlebar: core shell chrome, styled with Tailwind on the theme tokens (no legacy
@@ -38,7 +38,11 @@ export function Titlebar({ title = 'Electron Blueprint' }: { title?: string }) {
       )}
     >
       <div className="flex items-center gap-2.5 pl-3 [-webkit-app-region:no-drag]">
-        {!isMac && <img src={appIcon} alt="" draggable={false} className="size-5" />}
+        {!isMac && (
+          <span className="bg-brand-gradient flex size-6 items-center justify-center rounded-md">
+            <PiTerminalWindowFill aria-hidden="true" className="size-4.5 text-white" />
+          </span>
+        )}
         {menuVisible && <TitlebarMenu />}
       </div>
 

@@ -9,6 +9,7 @@
   },
   "scripts": {
     "dev": "cross-env ELECTRON_DISABLE_SANDBOX=1 electron-vite dev -w",
+    "theme": "npx shadcn@latest apply --only theme",
     "format": "prettier --write --list-different .",
     "format:check": "prettier --check .",
     "lint": "eslint . --ext .ts,.tsx --fix",
