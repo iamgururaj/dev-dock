@@ -1,0 +1,50 @@
+appId: com.gururaj.electronblueprint
+productName: electron-blueprint
+asar: true
+asarUnpack:
+  - resources/**
+electronLanguages:
+  - en-US
+  - en-GB
+directories:
+  buildResources: resources/build
+files:
+  - out/**
+  - resources/build/icon.*
+  - package.json
+  - LICENSE
+  # All JavaScript dependencies are bundled by electron-vite, including main/preload.
+  - '!node_modules/**'
+  - '!**/*.{map,tsbuildinfo}'
+win:
+  executableName: electron-blueprint
+nsis:
+  artifactName: ${name}-${version}-setup.${ext}
+  shortcutName: ${productName}
+  uninstallDisplayName: ${productName}
+  createDesktopShortcut: always
+mac:
+  entitlementsInherit: resources/build/entitlements.mac.plist
+  extendInfo:
+    - NSCameraUsageDescription: Application requests access to the device's camera.
+    - NSMicrophoneUsageDescription: Application requests access to the device's microphone.
+    - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
+    - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
+  # Unsigned builds, so a stray keychain certificate can't stall signing. Set a Developer ID to ship.
+  identity: null
+  notarize: false
+dmg:
+  artifactName: ${name}-${version}.${ext}
+linux:
+  target:
+    - AppImage
+    - snap
+    - deb
+  maintainer: Gururaj
+  category: Utility
+appImage:
+  artifactName: ${name}-${version}.${ext}
+npmRebuild: false
+publish:
+  provider: generic
+  url: https://example.com/auto-updates

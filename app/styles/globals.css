@@ -1,0 +1,160 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/jetbrains-mono';
+@source '@/app';
+@source '@/lib';
+
+/* Dark mode driven by a `.dark` class on <html> (toggled by the theme store), not media query. */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-bright: var(--border-bright);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  /* Preserve the application accent alongside the Lyra component style. */
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-hover: var(--brand-hover);
+  --color-success: var(--success);
+  --radius-lg: var(--radius);
+  --radius-md: max(0px, calc(var(--radius) - 2px));
+  --radius-sm: max(0px, calc(var(--radius) - 4px));
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: #f5f4fb;
+    --foreground: #1e1b32;
+    --card: #fefeff;
+    --card-foreground: #1e1b32;
+    --popover: #fefeff;
+    --popover-foreground: #1e1b32;
+    --primary: #4f46e5;
+    --primary-foreground: #fefeff;
+    --secondary: #eeecf8;
+    --secondary-foreground: #1e1b32;
+    --muted: #eeecf8;
+    --muted-foreground: #656078;
+    --accent: #eeecf8;
+    --accent-foreground: #1e1b32;
+    --destructive: #e81123;
+    --destructive-foreground: #fefeff;
+    --border: #dfdbee;
+    --border-bright: #c8c1df;
+    --input: #dfdbee;
+    --ring: #6366f1;
+    --brand: #4f46e5;
+    --brand-soft: color-mix(in srgb, var(--brand) 13%, transparent);
+    --brand-gradient: linear-gradient(135deg, #4f46e5, #7c3aed);
+    --brand-hover: #7c3aed;
+    --success: #16a34a;
+    --radius: 0rem;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --background: #0c0a14;
+    --foreground: #f3f0ff;
+    --card: #12101e;
+    --card-foreground: #f3f0ff;
+    --popover: #12101e;
+    --popover-foreground: #f3f0ff;
+    --primary: #a5b4fc;
+    --primary-foreground: #1e1b32;
+    --secondary: #1a1629;
+    --secondary-foreground: #f3f0ff;
+    --muted: #1a1629;
+    --muted-foreground: #aaa3bd;
+    --accent: #1a1629;
+    --accent-foreground: #f3f0ff;
+    --destructive: #e81123;
+    --destructive-foreground: #f3f0ff;
+    --border: #29233b;
+    --border-bright: #3b3352;
+    --input: #29233b;
+    --ring: #a5b4fc;
+    --brand: #a5b4fc;
+    --brand-soft: color-mix(in srgb, var(--brand) 13%, transparent);
+    --brand-gradient: linear-gradient(135deg, #4f46e5, #7c3aed);
+    --brand-hover: #c4b5fd;
+    --success: #4ade80;
+    --radius: 0rem;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  /* Thin, themed scrollbars (Chromium/Electron) — no ScrollArea wrappers needed. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-bright) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-bright);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Theme flips cross-fade rather than snap — see `withTransition` in shell/theme-store. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 220ms;
+    animation-timing-function: ease;
+  }
+
+  /* Held only across a theme flip: per-element colour transitions would lag the snapshot. */
+  .theme-switching *,
+  .theme-switching *::before,
+  .theme-switching *::after {
+    transition: none !important;
+  }
+}
+
+@utility bg-brand-gradient {
+  background-image: var(--brand-gradient);
+}
+
+@utility text-brand-gradient {
+  background-image: linear-gradient(135deg, var(--brand), var(--brand-hover));
+  background-clip: text;
+  color: transparent;
+}

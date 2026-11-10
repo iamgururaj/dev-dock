@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>Code Window</title>
+  <rect width="512" height="512" rx="60" fill="#8b5cf6" />
+  <path d="M0 118h512" stroke="#c4b5fd" stroke-width="16" />
+  <circle cx="54" cy="59" r="14" fill="#e9d5ff" />
+  <circle cx="104" cy="59" r="14" fill="#e9d5ff" />
+  <path
+    d="m156 218-72 86 72 86m200-172 72 86-72 86m-67-192-66 228"
+    fill="none"
+    stroke="#a5f3fc"
+    stroke-width="30"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

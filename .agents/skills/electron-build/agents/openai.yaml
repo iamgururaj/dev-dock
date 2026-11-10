@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Electron Build'
+  short_description: 'Lean Electron builds and verified packages'
+  default_prompt: 'Use $electron-build to build, optimize, and verify this Electron application package.'

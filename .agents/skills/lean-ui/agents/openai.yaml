@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lean UI"
+  short_description: "Compact React interfaces with shadcn Lyra"
+  default_prompt: "Use $lean-ui to build or refine this interface with compact layouts and essential information."
